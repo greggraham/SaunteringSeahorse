@@ -1,0 +1,2 @@
+org/cistercian/submario/desktop/DesktopLauncher.java
+ org.cistercian.submario.desktop.DesktopLauncher
