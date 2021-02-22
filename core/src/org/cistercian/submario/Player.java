@@ -9,8 +9,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Player extends Sprite {
-    private final float speed = 100; // pixels per second
-    private float deltaX, deltaY;
+    private final float speed = 70; // pixels per second
+    private float deltaX;
+    private final float jumpSpeed = 240;
+    private float vertSpeed = 0;
 
     public Player(Texture playerImage) {
         super(playerImage);
@@ -24,11 +26,11 @@ public class Player extends Sprite {
                 switch (keycode) {
                     case Input.Keys.LEFT:
                         deltaX = -speed;
-                        deltaY = speed;
+                        vertSpeed = jumpSpeed;
                         break;
                     case Input.Keys.RIGHT:
                         deltaX = speed;
-                        deltaY = speed;
+                        vertSpeed = jumpSpeed;
                         break;
                 }
                 return true;
@@ -39,11 +41,9 @@ public class Player extends Sprite {
                 switch (keycode) {
                     case Input.Keys.LEFT:
                         deltaX = -speed;
-                        deltaY = -speed;
                         break;
                     case Input.Keys.RIGHT:
                         deltaX = speed;
-                        deltaY = -speed;
                         break;
                 }
                 return true;
@@ -53,11 +53,11 @@ public class Player extends Sprite {
 
     public void move() {
         rect.x += deltaX * Gdx.graphics.getDeltaTime();
-        rect.y += deltaY * Gdx.graphics.getDeltaTime();
+        rect.y += vertSpeed * Gdx.graphics.getDeltaTime();
+        vertSpeed -= 550 * Gdx.graphics.getDeltaTime();
     }
 
     private void stopMotion() {
         deltaX = 0;
-        deltaY = 0;
     }
 }
