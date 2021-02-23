@@ -19,6 +19,10 @@ public class Player extends Sprite {
         stopMotion();
     }
 
+    public void draw(SpriteBatch batch) {
+        batch.draw(texture, rect.x, rect.y);
+    }
+
     public InputProcessor getInputAdapter() {
         return (new InputAdapter() {
             @Override

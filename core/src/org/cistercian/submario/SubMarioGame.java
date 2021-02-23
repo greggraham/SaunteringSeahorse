@@ -41,6 +41,7 @@ public class SubMarioGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(crateImg, 300, 0);
+		batch.draw(snowImg, 600, 0);
 		player.draw(batch);
 		batch.end();
 	}
@@ -49,6 +50,7 @@ public class SubMarioGame extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		crateImg.dispose();
+		snowImg.dispose();
 		playerImg.dispose();
 	}
 }
