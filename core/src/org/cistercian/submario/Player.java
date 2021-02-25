@@ -13,14 +13,20 @@ public class Player extends Sprite {
     private float deltaX;
     private final float jumpSpeed = 240;
     private float vertSpeed = 0;
+    private Texture rSeahorseImage, lSeahorseImage;
 
-    public Player(Texture playerImage) {
-        super(playerImage);
+    public Player(Texture rSeahorseImage, Texture lSeahorseImage) {
+        super(rSeahorseImage);
+        this.rSeahorseImage = rSeahorseImage;
+        this.lSeahorseImage = lSeahorseImage;
         stopMotion();
     }
 
-    public void draw(SpriteBatch batch) {
-        batch.draw(texture, rect.x, rect.y);
+    public void draw(SpriteBatch batch){
+        if(deltaX < 0)
+            batch.draw(lSeahorseImage, rect.x, rect.y);
+        else
+            batch.draw(rSeahorseImage, rect.x, rect.y);
     }
 
     public InputProcessor getInputAdapter() {
