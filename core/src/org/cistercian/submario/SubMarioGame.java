@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class SubMarioGame extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture crateImg, snowImg, redBrickImg, brownBrickImg;
+	Texture crateImg, snowImg, redBrickImg, brownBrickImg, coralImg;
 	Texture rSeahorseImg, lSeahorseImg;
 	Player seahorse;
 	Map gameMap = new Map();
@@ -19,6 +19,7 @@ public class SubMarioGame extends ApplicationAdapter {
 
 		// load images
 		crateImg = new Texture("crate.png");
+		coralImg = new Texture("coral.png");
 		snowImg = new Texture("snow.png");
 		redBrickImg = new Texture("red_brick.png");
 		brownBrickImg = new Texture("brown_brick.png");
@@ -37,11 +38,13 @@ public class SubMarioGame extends ApplicationAdapter {
 	@Override
 	public void render () {
 		seahorse.move();
-		Gdx.gl.glClearColor(0.1f, 0.3f, 0.2f, 1);
+		Gdx.gl.glClearColor(0.5294f, 0.8078f, 0.98f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(crateImg, 300, 0);
-		batch.draw(snowImg, 600, 0);
+		for(int i = 0; i < 30; i ++){
+			batch.draw(coralImg, 25*i, 0);
+		}
+		batch.draw(coralImg, 500, 0);
 		seahorse.draw(batch);
 		batch.end();
 	}
