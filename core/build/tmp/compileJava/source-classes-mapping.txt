@@ -2,8 +2,8 @@ org/cistercian/submario/Map.java
  org.cistercian.submario.Map
 org/cistercian/submario/Sprite.java
  org.cistercian.submario.Sprite
+org/cistercian/submario/SubMarioGame.java
+ org.cistercian.submario.SubMarioGame
 org/cistercian/submario/Player.java
  org.cistercian.submario.Player
  org.cistercian.submario.Player$1
-org/cistercian/submario/SubMarioGame.java
- org.cistercian.submario.SubMarioGame
