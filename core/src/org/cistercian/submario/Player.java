@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
 public class Player extends Sprite {
     private final float speed = 70; // pixels per second
     private float deltaX;
-    private final float jumpSpeed = 240;
+    private final float jumpSpeed = 200;
     private float vertSpeed = 0;
     private Texture rSeahorseImage, lSeahorseImage;
 
