@@ -15,11 +15,17 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.7/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/assets/lSeahorse.png" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/lSeahorse.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/assets/rSeahorse.png" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/rSeahorse.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/Squid.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/brown_brick.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/crate.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/lPufferfish.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/player.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/rPufferfish.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/red_brick.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/assets/snow.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/org/cistercian/submario/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/org/cistercian/submario/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/org/cistercian/submario/SubMarioGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/org/cistercian/submario/SubMarioGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +53,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />

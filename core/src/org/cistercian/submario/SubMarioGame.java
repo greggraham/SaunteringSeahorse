@@ -6,11 +6,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.ArrayList;
+
 public class SubMarioGame extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture crateImg, snowImg, redBrickImg, brownBrickImg, coralImg, lCoralImg, rCoralImg, vrCoralImg, vlCoralImg;
+	Texture coralImg, lCoralImg, rCoralImg, vrCoralImg, vlCoralImg;
 	Texture rSeahorseImg, lSeahorseImg;
 	Player seahorse;
+	ArrayList<Texture> floor;
+	int x;
 	Map gameMap = new Map();
 
 	@Override
@@ -18,17 +22,13 @@ public class SubMarioGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		// load images
-		crateImg = new Texture("crate.png");
 		coralImg = new Texture("coral.png");
 		lCoralImg = new Texture("leftCoral.png");
 		rCoralImg = new Texture("rightCoral.png");
-		vrCoralImg = new Texture("verticalRightCoral.png");
 		vlCoralImg = new Texture("verticalLeftCoral.png");
-		snowImg = new Texture("snow.png");
-		redBrickImg = new Texture("red_brick.png");
-		brownBrickImg = new Texture("brown_brick.png");
-		rSeahorseImg = new Texture("rSeahorse.png");
+		vrCoralImg = new Texture("verticalRightCoral.png");
 		lSeahorseImg = new Texture("lSeahorse.png");
+		rSeahorseImg = new Texture("rSeahorse.png");
 
 		// load map
 		//gameMap.load("map.csv");
@@ -46,25 +46,39 @@ public class SubMarioGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(lCoralImg, 0, 0);			//left corner coral piece
-		batch.draw(rCoralImg, 31*25, 0);		//right corner coral piece
-		for(int i = 1; i < 31; i ++){
-			batch.draw(coralImg, 25*i, 0);
-			batch.draw(coralImg, 25*i, 150);
-			batch.draw(coralImg, 25*i, 300);
-			batch.draw(coralImg, 25*i, 450);
-			batch.draw(coralImg, 25*i, 600);
-			batch.draw(vrCoralImg,31*25, 25*i);
-			batch.draw(vlCoralImg,0, 25*i);
+		batch.draw(rCoralImg, 31 * 25, 0);		//right corner coral piece
+		for(int j = 0; j < 10; j ++){
+			for(int i = 1; i <= 30; i ++) {
+				batch.draw(coralImg, 25 * i, 150 * j);
+			}
+			for(int k = 1; k <= 6; k ++){
+				batch.draw(vrCoralImg, 31 * 25, j * 150 + 25 * k);
+				batch.draw(vlCoralImg, 0, j * 150 + 25 * k);
+			}
 		}
 		seahorse.draw(batch);
 		batch.end();
+
+		/*
+		floor = new ArrayList<Texture>();
+		for(int j = 0; j < 10; j++) {
+			x = (int) (Math.random() * 31);
+			for (int i = 1; i <= 30; i++) {
+				batch.draw(coralImg, 25 * i, 150 * j);
+				floor.add(coralImg);
+			}
+		}
+		*/
 	}
 	
 	@Override
-	public void dispose () {
+	public void dispose (){
 		batch.dispose();
-		crateImg.dispose();
-		snowImg.dispose();
+		coralImg.dispose();
+		vlCoralImg.dispose();
+		vrCoralImg.dispose();
+		lCoralImg.dispose();
+		rCoralImg.dispose();
 		rSeahorseImg.dispose();
 		lSeahorseImg.dispose();
 	}
