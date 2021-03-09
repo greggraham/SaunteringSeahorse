@@ -7,15 +7,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class SubMarioGame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture coralImg, lCoralImg, rCoralImg, vrCoralImg, vlCoralImg;
 	Texture rSeahorseImg, lSeahorseImg;
 	Player seahorse;
-	ArrayList<Texture> floor;
-	int x;
-	Map gameMap = new Map();
+	ArrayList<Sprite> sprites;
+	//Map gameMap = new Map();
 
 	@Override
 	public void create () {
@@ -30,13 +30,20 @@ public class SubMarioGame extends ApplicationAdapter {
 		lSeahorseImg = new Texture("lSeahorse.png");
 		rSeahorseImg = new Texture("rSeahorse.png");
 
-		// load map
-		//gameMap.load("map.csv");
-
 		// create player
 		seahorse = new Player(rSeahorseImg, lSeahorseImg);
 		Gdx.input.setInputProcessor(seahorse.getInputAdapter());
 
+		//create coral sprites
+		sprites = new ArrayList<Sprite>();
+		int gap = (int)((Math.random() * 30) + 1) * 25;
+		for(int y = 0; y < 10 * 150; y += 150){
+			for(int x = 25; x <= 25 * 30; x += 25){
+				if (x != gap && x != gap + 10){
+					sprites.add(new Sprite(coralImg,x,y));
+				}
+			}
+		}
 	}
 
 	@Override
@@ -46,29 +53,12 @@ public class SubMarioGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(lCoralImg, 0, 0);			//left corner coral piece
-		batch.draw(rCoralImg, 31 * 25, 0);		//right corner coral piece
-		for(int j = 0; j < 10; j ++){
-			for(int i = 1; i <= 30; i ++) {
-				batch.draw(coralImg, 25 * i, 150 * j);
-			}
-			for(int k = 1; k <= 6; k ++){
-				batch.draw(vrCoralImg, 31 * 25, j * 150 + 25 * k);
-				batch.draw(vlCoralImg, 0, j * 150 + 25 * k);
-			}
+		batch.draw(rCoralImg, 31 * 25, 0);	//right corner coral piece
+		for(Sprite s: sprites){
+			s.draw();
 		}
 		seahorse.draw(batch);
 		batch.end();
-
-		/*
-		floor = new ArrayList<Texture>();
-		for(int j = 0; j < 10; j++) {
-			x = (int) (Math.random() * 31);
-			for (int i = 1; i <= 30; i++) {
-				batch.draw(coralImg, 25 * i, 150 * j);
-				floor.add(coralImg);
-			}
-		}
-		*/
 	}
 	
 	@Override
