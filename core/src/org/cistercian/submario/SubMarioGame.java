@@ -15,6 +15,7 @@ public class SubMarioGame extends ApplicationAdapter {
 	Texture rSeahorseImg, lSeahorseImg;
 	Player seahorse;
 	ArrayList<Sprite> sprites;
+	int m = 15;		//number of "levels" of coral
 	//Map gameMap = new Map();
 
 	@Override
@@ -34,15 +35,22 @@ public class SubMarioGame extends ApplicationAdapter {
 		seahorse = new Player(rSeahorseImg, lSeahorseImg);
 		Gdx.input.setInputProcessor(seahorse.getInputAdapter());
 
-		//create coral sprites
 		sprites = new ArrayList<Sprite>();
-		int gap = (int)((Math.random() * 30) + 1) * 25;
-		for(int y = 0; y < 10 * 150; y += 150){
-			for(int x = 25; x <= 25 * 30; x += 25){
-				if (x != gap && x != gap + 10){
+
+		//create horizontal coral sprites
+		for(float y = 12.5f; y <= 12.5 + m * 150; y += 150){
+			float gap = (int)((Math.random() * 28) + 1) * 25 + 12.5f;
+			for(float x = 37.5f; x <= 12.5 + 25 * 30; x += 25){
+				if (y < 25 || (x != gap && x != gap + 25 && x != gap + 50 && x != gap + 75)){
 					sprites.add(new Sprite(coralImg,x,y));
 				}
 			}
+		}
+
+		//create vertical coral sprites
+		for(float y = 37.5f; y <= 37.5 + m * 150; y += 25){
+			sprites.add(new Sprite(vlCoralImg,12.5f,y));
+			sprites.add(new Sprite(vrCoralImg,12.5f + 25 * 31,y));
 		}
 	}
 
@@ -55,7 +63,7 @@ public class SubMarioGame extends ApplicationAdapter {
 		batch.draw(lCoralImg, 0, 0);			//left corner coral piece
 		batch.draw(rCoralImg, 31 * 25, 0);	//right corner coral piece
 		for(Sprite s: sprites){
-			s.draw();
+			s.draw(batch);
 		}
 		seahorse.draw(batch);
 		batch.end();

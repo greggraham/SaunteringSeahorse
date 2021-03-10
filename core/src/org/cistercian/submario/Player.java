@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Rectangle;
 public class Player extends Sprite {
     private final float speed = 70; // pixels per second
     private float deltaX;
-    private final float jumpSpeed = 250;
+    private final float jumpSpeed = 240;
     private float vertSpeed = 0;
     private Texture rSeahorseImage, lSeahorseImage;
 
@@ -23,7 +23,9 @@ public class Player extends Sprite {
     }
 
     public void draw(SpriteBatch batch){
-        if(deltaX < 0)
+        if(deltaX == 0)
+            batch.draw (rSeahorseImage, 0, 0);
+        else if(deltaX < 0)
             batch.draw(lSeahorseImage, rect.x, rect.y);
         else
             batch.draw(rSeahorseImage, rect.x, rect.y);
@@ -64,7 +66,8 @@ public class Player extends Sprite {
     public void move() {
         rect.x += deltaX * Gdx.graphics.getDeltaTime();
         rect.y += vertSpeed * Gdx.graphics.getDeltaTime();
-        vertSpeed -= 550 * Gdx.graphics.getDeltaTime();
+        if(deltaX != 0)
+            vertSpeed -= 550 * Gdx.graphics.getDeltaTime();
     }
 
     private void stopMotion() {

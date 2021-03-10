@@ -5,3 +5,5 @@ org/cistercian/submario/Sprite.java
 org/cistercian/submario/Player.java
  org.cistercian.submario.Player
  org.cistercian.submario.Player$1
+org/cistercian/submario/SubMarioGame.java
+ org.cistercian.submario.SubMarioGame
