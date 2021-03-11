@@ -28,4 +28,8 @@ public class Sprite {
         rect.x = centerX - rect.width / 2;
         rect.y = centerY - rect.height / 2;
     }
+
+    public float getY(){
+        return rect.y;
+    }
 }

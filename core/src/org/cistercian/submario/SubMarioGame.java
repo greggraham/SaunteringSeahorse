@@ -3,6 +3,7 @@ package org.cistercian.submario;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -11,6 +12,7 @@ import java.util.Random;
 
 public class SubMarioGame extends ApplicationAdapter {
 	SpriteBatch batch;
+	private OrthographicCamera camera;
 	Texture coralImg, lCoralImg, rCoralImg, vrCoralImg, vlCoralImg;
 	Texture rSeahorseImg, lSeahorseImg;
 	Player seahorse;
@@ -21,6 +23,9 @@ public class SubMarioGame extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, 800, 600);
 
 		// load images
 		coralImg = new Texture("coral.png");
@@ -57,6 +62,10 @@ public class SubMarioGame extends ApplicationAdapter {
 	@Override
 	public void render () {
 		seahorse.move();
+		camera.update();
+		batch.setProjectionMatrix(camera.combined);
+		camera.translate(0, 40 + seahorse.getY());
+
 		Gdx.gl.glClearColor(0.5294f, 0.8078f, 0.98f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
