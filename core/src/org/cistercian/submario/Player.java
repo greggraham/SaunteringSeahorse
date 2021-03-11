@@ -23,12 +23,17 @@ public class Player extends Sprite {
     }
 
     public void draw(SpriteBatch batch){
-        if(deltaX == 0)
-            batch.draw (rSeahorseImage, 0, 0);
+        if(deltaX == 0){
+            batch.draw(rSeahorseImage, 40, rect.y + 30);
+            vertSpeed -= 30 * Gdx.graphics.getDeltaTime();
+            rect.y += vertSpeed * Gdx.graphics.getDeltaTime();
+            if(rect.y < 0)
+                vertSpeed = 15;
+        }
         else if(deltaX < 0)
-            batch.draw(lSeahorseImage, rect.x, rect.y);
+            batch.draw(lSeahorseImage, 40 + rect.x, 40 + rect.y);
         else
-            batch.draw(rSeahorseImage, rect.x, rect.y);
+            batch.draw(rSeahorseImage, 40 + rect.x, 40 + rect.y);
     }
 
     public InputProcessor getInputAdapter() {

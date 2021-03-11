@@ -39,7 +39,7 @@ public class SubMarioGame extends ApplicationAdapter {
 
 		//create horizontal coral sprites
 		for(float y = 12.5f; y <= 12.5 + m * 150; y += 150){
-			float gap = (int)((Math.random() * 28) + 1) * 25 + 12.5f;
+			float gap = (int)((Math.random() * 27) + 1) * 25 + 12.5f;
 			for(float x = 37.5f; x <= 12.5 + 25 * 30; x += 25){
 				if (y < 25 || (x != gap && x != gap + 25 && x != gap + 50 && x != gap + 75)){
 					sprites.add(new Sprite(coralImg,x,y));
@@ -70,7 +70,7 @@ public class SubMarioGame extends ApplicationAdapter {
 	}
 	
 	@Override
-	public void dispose (){
+	public void dispose(){
 		batch.dispose();
 		coralImg.dispose();
 		vlCoralImg.dispose();
