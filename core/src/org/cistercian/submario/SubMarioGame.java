@@ -64,8 +64,12 @@ public class SubMarioGame extends ApplicationAdapter {
 		seahorse.move();
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
-		camera.translate(0, 40 + seahorse.getY());
-
+		if(seahorse.getY() > 300 && seahorse.getY() >= camera.position.y){
+			camera.position.set(400, seahorse.getY(), 0);
+		}
+		else if(seahorse.getY() < camera.position.y - 200 && seahorse.getY() > 100){
+			camera.position.set(400, seahorse.getY() + 200, 0);
+		}
 		Gdx.gl.glClearColor(0.5294f, 0.8078f, 0.98f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
