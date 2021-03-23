@@ -17,11 +17,13 @@ public class SubMarioGame extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	Texture coralImg, lCoralImg, rCoralImg, vrCoralImg, vlCoralImg;
 	Texture rSeahorseImg, lSeahorseImg;
+	Texture clickImg;
 	Player seahorse;
 	ArrayList<Sprite> sprites;
 	int m = 15;		//number of "levels" of coral
 	BitmapFont score, start;
 	String level;
+	int number;
 	//Map gameMap = new Map();
 
 	@Override
@@ -32,6 +34,7 @@ public class SubMarioGame extends ApplicationAdapter {
 		score.setColor(Color.BLUE);
 		score.getData().setScale(2);
 		start = new BitmapFont();
+		start.setColor(Color.BLUE);
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 600);
@@ -44,6 +47,7 @@ public class SubMarioGame extends ApplicationAdapter {
 		vrCoralImg = new Texture("verticalRightCoral.png");
 		lSeahorseImg = new Texture("lSeahorse.png");
 		rSeahorseImg = new Texture("rSeahorse.png");
+		clickImg = new Texture("click.png");
 
 		// create player
 		seahorse = new Player(rSeahorseImg, lSeahorseImg);
@@ -66,10 +70,6 @@ public class SubMarioGame extends ApplicationAdapter {
 			sprites.add(new Sprite(vlCoralImg,12.5f,y));
 			sprites.add(new Sprite(vrCoralImg,12.5f + 25 * 31,y));
 		}
-
-		//for(seahorse.getDeltaX() == 0){
-		//	start.draw(batch, "tap to start", 400, 112);
-		//}
 	}
 
 	@Override
@@ -92,8 +92,19 @@ public class SubMarioGame extends ApplicationAdapter {
 			s.draw(batch);
 		}
 		seahorse.draw(batch);
-		level = Integer.toString((int)((seahorse.getY() + 40)/150));
-		score.draw(batch, level, 400, camera.position.y + 280);
+
+		if(seahorse.getDeltaX() == 0){
+			start.draw(batch, "tap to start", 100, 62);
+			//batch.draw(clickImg, 150, 62);
+			//batch.draw(titleImg, 150, 375);
+		}
+
+		number = ((int)((seahorse.getY() + 40)/150));
+		level = Integer.toString(number);
+		if(number < 10)
+			score.draw(batch, level, 392, camera.position.y + 280);	//need to find center
+		if(number >= 10)
+			score.draw(batch, level, 384, camera.position.y + 280);	//ditto
 		batch.end();
 	}
 	
