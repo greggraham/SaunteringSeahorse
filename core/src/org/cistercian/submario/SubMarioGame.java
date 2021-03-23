@@ -94,8 +94,8 @@ public class SubMarioGame extends ApplicationAdapter {
 		seahorse.draw(batch);
 
 		if(seahorse.getDeltaX() == 0){
-			start.draw(batch, "tap to start", 100, 62);
-			//batch.draw(clickImg, 150, 62);
+			start.draw(batch, "use arrow keys to move", 100, 62);
+			batch.draw(clickImg, 150, 62);
 			//batch.draw(titleImg, 150, 375);
 		}
 
