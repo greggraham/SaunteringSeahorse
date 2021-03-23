@@ -78,4 +78,8 @@ public class Player extends Sprite {
     private void stopMotion() {
         deltaX = 0;
     }
+
+    public float getDeltaX(){
+        return deltaX;
+    }
 }

@@ -2,9 +2,11 @@ package org.cistercian.submario;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
@@ -18,11 +20,18 @@ public class SubMarioGame extends ApplicationAdapter {
 	Player seahorse;
 	ArrayList<Sprite> sprites;
 	int m = 15;		//number of "levels" of coral
+	BitmapFont score, start;
+	String level;
 	//Map gameMap = new Map();
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+
+		score = new BitmapFont();
+		score.setColor(Color.BLUE);
+		score.getData().setScale(2);
+		start = new BitmapFont();
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 600);
@@ -57,6 +66,10 @@ public class SubMarioGame extends ApplicationAdapter {
 			sprites.add(new Sprite(vlCoralImg,12.5f,y));
 			sprites.add(new Sprite(vrCoralImg,12.5f + 25 * 31,y));
 		}
+
+		//for(seahorse.getDeltaX() == 0){
+		//	start.draw(batch, "tap to start", 400, 112);
+		//}
 	}
 
 	@Override
@@ -79,6 +92,8 @@ public class SubMarioGame extends ApplicationAdapter {
 			s.draw(batch);
 		}
 		seahorse.draw(batch);
+		level = Integer.toString((int)((seahorse.getY() + 40)/150));
+		score.draw(batch, level, 400, camera.position.y + 280);
 		batch.end();
 	}
 	
