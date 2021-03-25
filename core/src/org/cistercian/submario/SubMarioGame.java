@@ -31,10 +31,10 @@ public class SubMarioGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		score = new BitmapFont();
-		score.setColor(Color.BLUE);
+		score.setColor(Color.WHITE);
 		score.getData().setScale(2);
 		start = new BitmapFont();
-		start.setColor(Color.BLUE);
+		start.setColor(Color.YELLOW);
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 600);
@@ -94,8 +94,8 @@ public class SubMarioGame extends ApplicationAdapter {
 		seahorse.draw(batch);
 
 		if(seahorse.getDeltaX() == 0){
-			start.draw(batch, "use arrow keys to move", 100, 62);
-			batch.draw(clickImg, 150, 62);
+			start.draw(batch, "use left and right\narrow keys to move", 170, 104);
+			batch.draw(clickImg, 110, 73);
 			//batch.draw(titleImg, 150, 375);
 		}
 
