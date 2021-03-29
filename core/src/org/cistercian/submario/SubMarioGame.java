@@ -20,7 +20,7 @@ public class SubMarioGame extends ApplicationAdapter {
 	Texture clickImg;
 	Player seahorse;
 	ArrayList<Sprite> sprites;
-	int m = 15;		//number of "levels" of coral
+	int m = 30;		//number of "levels" of coral
 	BitmapFont score, start;
 	String level;
 	int number;
@@ -74,7 +74,7 @@ public class SubMarioGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		seahorse.move();
+		seahorse.move(sprites);
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
 		if(seahorse.getY() > 300 && seahorse.getY() >= camera.position.y){
@@ -99,7 +99,7 @@ public class SubMarioGame extends ApplicationAdapter {
 			//batch.draw(titleImg, 150, 375);
 		}
 
-		number = ((int)((seahorse.getY() + 40)/150));
+		number = ((int)(seahorse.getY()/150));
 		level = Integer.toString(number);
 		if(number < 10)
 			score.draw(batch, level, 392, camera.position.y + 280);	//need to find center

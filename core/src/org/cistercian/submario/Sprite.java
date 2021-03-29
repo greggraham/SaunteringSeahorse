@@ -32,4 +32,8 @@ public class Sprite {
     public float getY(){
         return rect.y;
     }
+
+    public Rectangle getRect(){
+        return rect;
+    }
 }

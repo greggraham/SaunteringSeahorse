@@ -8,32 +8,37 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
+import java.util.ArrayList;
+
 public class Player extends Sprite {
     private final float speed = 70; // pixels per second
     private float deltaX;
     private final float jumpSpeed = 240;
     private float vertSpeed = 0;
     private Texture rSeahorseImage, lSeahorseImage;
+    private boolean gameOver = false;
 
     public Player(Texture rSeahorseImage, Texture lSeahorseImage) {
         super(rSeahorseImage);
         this.rSeahorseImage = rSeahorseImage;
         this.lSeahorseImage = lSeahorseImage;
+        rect.x = 40;
+        rect.y = 40;
         stopMotion();
     }
 
     public void draw(SpriteBatch batch){
-        if(deltaX == 0){
-            batch.draw(rSeahorseImage, 40, rect.y + 30);
+        if(deltaX == 0 && !gameOver){
+            batch.draw(rSeahorseImage, rect.x, rect.y);
             vertSpeed -= 30 * Gdx.graphics.getDeltaTime();
             rect.y += vertSpeed * Gdx.graphics.getDeltaTime();
-            if(rect.y < 0)
+            if(rect.y < 40)
                 vertSpeed = 15;
         }
         else if(deltaX < 0)
-            batch.draw(lSeahorseImage, 40 + rect.x, 40 + rect.y);
+            batch.draw(lSeahorseImage, rect.x, rect.y);
         else
-            batch.draw(rSeahorseImage, 40 + rect.x, 40 + rect.y);
+            batch.draw(rSeahorseImage, rect.x, rect.y);
     }
 
     public InputProcessor getInputAdapter() {
@@ -68,11 +73,19 @@ public class Player extends Sprite {
         });
     }
 
-    public void move() {
+    public void move(ArrayList<Sprite> sprites) {
         rect.x += deltaX * Gdx.graphics.getDeltaTime();
         rect.y += vertSpeed * Gdx.graphics.getDeltaTime();
         if(deltaX != 0)
             vertSpeed -= 550 * Gdx.graphics.getDeltaTime();
+
+        for(Sprite s : sprites){
+            if((this.getRect()).overlaps(s.getRect())){
+                gameOver = true;
+                deltaX = 0;
+                vertSpeed = 0;
+            }
+        }
     }
 
     private void stopMotion() {
