@@ -47,26 +47,17 @@ public class Player extends Sprite {
             public boolean keyDown(int keycode) {
                 switch (keycode) {
                     case Input.Keys.LEFT:
-                        deltaX = -speed;
-                        vertSpeed = jumpSpeed;
-                        break;
+                        if(!gameOver) {
+                            deltaX = -speed;
+                            vertSpeed = jumpSpeed;
+                            break;
+                        }
                     case Input.Keys.RIGHT:
-                        deltaX = speed;
-                        vertSpeed = jumpSpeed;
-                        break;
-                }
-                return true;
-            }
-
-            @Override
-            public boolean keyUp(int keycode) {
-                switch (keycode) {
-                    case Input.Keys.LEFT:
-                        deltaX = -speed;
-                        break;
-                    case Input.Keys.RIGHT:
-                        deltaX = speed;
-                        break;
+                        if(!gameOver) {
+                            deltaX = speed;
+                            vertSpeed = jumpSpeed;
+                            break;
+                        }
                 }
                 return true;
             }
@@ -94,5 +85,9 @@ public class Player extends Sprite {
 
     public float getDeltaX(){
         return deltaX;
+    }
+
+    public boolean getGameOver(){
+        return gameOver;
     }
 }

@@ -21,7 +21,7 @@ public class SubMarioGame extends ApplicationAdapter {
 	Player seahorse;
 	ArrayList<Sprite> sprites;
 	int m = 30;		//number of "levels" of coral
-	BitmapFont score, start;
+	BitmapFont score, start, end;
 	String level;
 	int number;
 	//Map gameMap = new Map();
@@ -35,6 +35,9 @@ public class SubMarioGame extends ApplicationAdapter {
 		score.getData().setScale(2);
 		start = new BitmapFont();
 		start.setColor(Color.YELLOW);
+		end = new BitmapFont();
+		end.setColor(Color.RED);
+		end.getData().setScale(3);
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 600);
@@ -93,10 +96,14 @@ public class SubMarioGame extends ApplicationAdapter {
 		}
 		seahorse.draw(batch);
 
-		if(seahorse.getDeltaX() == 0){
+		if(seahorse.getDeltaX() == 0 && !seahorse.getGameOver()){
 			start.draw(batch, "use left and right\narrow keys to move", 170, 104);
 			batch.draw(clickImg, 110, 73);
 			//batch.draw(titleImg, 150, 375);
+		}
+
+		if(seahorse.getGameOver()){
+			end.draw(batch, "GAME OVER", 266, camera.position.y + 240);
 		}
 
 		number = ((int)(seahorse.getY()/150));
