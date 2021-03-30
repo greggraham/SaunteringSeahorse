@@ -16,7 +16,6 @@ public class Player extends Sprite {
     private final float jumpSpeed = 240;
     private float vertSpeed = 0;
     private Texture rSeahorseImage, lSeahorseImage;
-    private boolean gameOver = false;
 
     public Player(Texture rSeahorseImage, Texture lSeahorseImage) {
         super(rSeahorseImage);
@@ -28,17 +27,18 @@ public class Player extends Sprite {
     }
 
     public void draw(SpriteBatch batch){
-        if(deltaX == 0 && !gameOver){
-            batch.draw(rSeahorseImage, rect.x, rect.y);
-            vertSpeed -= 30 * Gdx.graphics.getDeltaTime();
-            rect.y += vertSpeed * Gdx.graphics.getDeltaTime();
-            if(rect.y < 40)
-                vertSpeed = 15;
-        }
-        else if(deltaX < 0)
+        if(deltaX < 0)
             batch.draw(lSeahorseImage, rect.x, rect.y);
         else
             batch.draw(rSeahorseImage, rect.x, rect.y);
+    }
+
+    public void bounceDraw(SpriteBatch batch) {
+        batch.draw(rSeahorseImage, rect.x, rect.y);
+        vertSpeed -= 30 * Gdx.graphics.getDeltaTime();
+        rect.y += vertSpeed * Gdx.graphics.getDeltaTime();
+        if(rect.y < 40)
+            vertSpeed = 15;
     }
 
     public InputProcessor getInputAdapter() {
@@ -64,30 +64,28 @@ public class Player extends Sprite {
         });
     }
 
-    public void move(ArrayList<Sprite> sprites) {
+    public void move() {
         rect.x += deltaX * Gdx.graphics.getDeltaTime();
         rect.y += vertSpeed * Gdx.graphics.getDeltaTime();
         if(deltaX != 0)
             vertSpeed -= 550 * Gdx.graphics.getDeltaTime();
+    }
 
+    public boolean checkCollision(ArrayList<Sprite> sprites){
         for(Sprite s : sprites){
             if((this.getRect()).overlaps(s.getRect())){
-                gameOver = true;
-                deltaX = 0;
-                vertSpeed = 0;
+                return true;
             }
         }
+        return false;
     }
 
     private void stopMotion() {
         deltaX = 0;
+        vertSpeed = 0;
     }
 
     public float getDeltaX(){
         return deltaX;
-    }
-
-    public boolean getGameOver(){
-        return gameOver;
     }
 }
