@@ -41,28 +41,6 @@ public class Player extends Sprite {
             vertSpeed = 15;
     }
 
-    public InputProcessor getInputAdapter() {
-        return (new InputAdapter() {
-            @Override
-            public boolean keyDown(int keycode) {
-                switch (keycode) {
-                    case Input.Keys.LEFT:
-                        if(!gameOver) {
-                            deltaX = -speed;
-                            vertSpeed = jumpSpeed;
-                            break;
-                        }
-                    case Input.Keys.RIGHT:
-                        if(!gameOver) {
-                            deltaX = speed;
-                            vertSpeed = jumpSpeed;
-                            break;
-                        }
-                }
-                return true;
-            }
-        });
-    }
 
     public void move() {
         rect.x += deltaX * Gdx.graphics.getDeltaTime();
@@ -80,7 +58,17 @@ public class Player extends Sprite {
         return false;
     }
 
-    private void stopMotion() {
+    public void moveLeft() {
+        deltaX = -speed;
+        vertSpeed = jumpSpeed;
+    }
+
+    public void moveRight() {
+        deltaX = speed;
+        vertSpeed = jumpSpeed;
+    }
+
+    public void stopMotion() {
         deltaX = 0;
         vertSpeed = 0;
     }

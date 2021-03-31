@@ -2,6 +2,8 @@ package org.cistercian.submario;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -55,7 +57,24 @@ public class SeahorseGame extends ApplicationAdapter {
 
 		// create player
 		seahorse = new Player(rSeahorseImg, lSeahorseImg);
-		Gdx.input.setInputProcessor(seahorse.getInputAdapter());
+		Gdx.input.setInputProcessor(new InputAdapter() {
+			@Override
+			public boolean keyDown(int keycode) {
+				switch (keycode) {
+					case Input.Keys.LEFT:
+						if(!gameOver) {
+							seahorse.moveLeft();
+							break;
+						}
+					case Input.Keys.RIGHT:
+						if(!gameOver) {
+							seahorse.moveRight();
+							break;
+						}
+				}
+				return true;
+			}
+		});
 
 		sprites = new ArrayList<Sprite>();
 
@@ -81,7 +100,7 @@ public class SeahorseGame extends ApplicationAdapter {
 		seahorse.move();
 		if(seahorse.checkCollision(sprites)){
 			gameOver = true;
-			seahorse.stop
+			seahorse.stopMotion();
 		}
 
 		camera.update();
@@ -102,7 +121,7 @@ public class SeahorseGame extends ApplicationAdapter {
 		}
 		seahorse.draw(batch);
 
-		if(seahorse.getDeltaX() == 0 && !seahorse.getGameOver()){
+		if(seahorse.getDeltaX() == 0 && !gameOver){
 			start.draw(batch, "use left and right\narrow keys to move", 170, 104);
 			batch.draw(clickImg, 110, 73);
 			//batch.draw(titleImg, 150, 375);
