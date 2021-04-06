@@ -16,6 +16,7 @@ public class Player extends Sprite {
     private final float jumpSpeed = 240;
     private float vertSpeed = 0;
     private Texture rSeahorseImage, lSeahorseImage;
+    private int direction = 1;
 
     public Player(Texture rSeahorseImage, Texture lSeahorseImage) {
         super(rSeahorseImage);
@@ -27,7 +28,7 @@ public class Player extends Sprite {
     }
 
     public void draw(SpriteBatch batch){
-        if(deltaX < 0)
+        if(direction == -1)
             batch.draw(lSeahorseImage, rect.x, rect.y);
         else
             batch.draw(rSeahorseImage, rect.x, rect.y);
@@ -61,16 +62,24 @@ public class Player extends Sprite {
     public void moveLeft() {
         deltaX = -speed;
         vertSpeed = jumpSpeed;
+        direction = -1;
     }
 
     public void moveRight() {
         deltaX = speed;
         vertSpeed = jumpSpeed;
+        direction = 1;
     }
 
     public void stopMotion() {
         deltaX = 0;
         vertSpeed = 0;
+    }
+
+    public void restart() {
+        rect.x = 40;
+        rect.y = 40;
+        direction = 1;
     }
 
     public float getDeltaX(){

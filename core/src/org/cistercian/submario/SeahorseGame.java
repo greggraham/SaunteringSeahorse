@@ -62,21 +62,32 @@ public class SeahorseGame extends ApplicationAdapter {
 			public boolean keyDown(int keycode) {
 				switch (keycode) {
 					case Input.Keys.LEFT:
-						if(!gameOver) {
+						if (!gameOver) {
 							seahorse.moveLeft();
-							break;
 						}
+						break;
 					case Input.Keys.RIGHT:
-						if(!gameOver) {
+						if (!gameOver) {
 							seahorse.moveRight();
-							break;
 						}
+						break;
+					case Input.Keys.SPACE:
+						if (gameOver) {
+							seahorse.restart();
+							sprites = createMap();
+							camera.setToOrtho(false, 800, 600);
+							gameOver = false;
+						}
+						break;
 				}
 				return true;
 			}
 		});
+		sprites = createMap();
+	}
+	private ArrayList<Sprite> createMap() {
 
-		sprites = new ArrayList<Sprite>();
+		ArrayList<Sprite> sprites = new ArrayList<Sprite>();
 
 		//create horizontal coral sprites
 		for(float y = 12.5f; y <= 12.5 + m * 150; y += 150){
@@ -93,6 +104,8 @@ public class SeahorseGame extends ApplicationAdapter {
 			sprites.add(new Sprite(vlCoralImg,12.5f,y));
 			sprites.add(new Sprite(vrCoralImg,12.5f + 25 * 31,y));
 		}
+
+		return sprites;
 	}
 
 	@Override
