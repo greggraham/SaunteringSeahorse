@@ -34,15 +34,6 @@ public class Player extends Sprite {
             batch.draw(rSeahorseImage, rect.x, rect.y);
     }
 
-    public void bounceDraw(SpriteBatch batch) {
-        batch.draw(rSeahorseImage, rect.x, rect.y);
-        vertSpeed -= 30 * Gdx.graphics.getDeltaTime();
-        rect.y += vertSpeed * Gdx.graphics.getDeltaTime();
-        if(rect.y < 40)
-            vertSpeed = 15;
-    }
-
-
     public void move() {
         rect.x += deltaX * Gdx.graphics.getDeltaTime();
         rect.y += vertSpeed * Gdx.graphics.getDeltaTime();

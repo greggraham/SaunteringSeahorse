@@ -145,7 +145,10 @@ public class SeahorseGame extends ApplicationAdapter {
 
 		if(gameOver){
 			end.draw(batch, "GAME OVER", 266, camera.position.y + 240);
-			reset.draw(batch, "click the spacebar to restart", 307, camera.position.y);
+			if(seahorse.getY() < 300)
+				reset.draw(batch, "click the space bar to restart", 307, 248);
+			else
+				reset.draw(batch, "click the space bar to restart", 307, camera.position.y + 150);
 		}
 
 		number = ((int)(seahorse.getY()/150));
