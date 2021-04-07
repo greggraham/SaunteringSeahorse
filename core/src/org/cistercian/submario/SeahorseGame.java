@@ -23,7 +23,7 @@ public class SeahorseGame extends ApplicationAdapter {
 	Player seahorse;
 	ArrayList<Sprite> sprites;
 	int m = 30;		//number of "levels" of coral
-	BitmapFont score, start, end;
+	BitmapFont score, start, end, reset;
 	String level;
 	int number;
 	private boolean gameOver = false;
@@ -41,6 +41,8 @@ public class SeahorseGame extends ApplicationAdapter {
 		end = new BitmapFont();
 		end.setColor(Color.RED);
 		end.getData().setScale(3);
+		reset = new BitmapFont();
+		reset.setColor(Color.PURPLE);
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 600);
@@ -114,6 +116,7 @@ public class SeahorseGame extends ApplicationAdapter {
 		if(seahorse.checkCollision(sprites)){
 			gameOver = true;
 			seahorse.stopMotion();
+
 		}
 
 		camera.update();
@@ -142,6 +145,7 @@ public class SeahorseGame extends ApplicationAdapter {
 
 		if(gameOver){
 			end.draw(batch, "GAME OVER", 266, camera.position.y + 240);
+			reset.draw(batch, "click the spacebar to restart", 307, camera.position.y);
 		}
 
 		number = ((int)(seahorse.getY()/150));
