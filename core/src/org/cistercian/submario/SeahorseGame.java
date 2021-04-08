@@ -16,18 +16,17 @@ import java.util.Random;
 
 public class SeahorseGame extends ApplicationAdapter {
 	SpriteBatch batch;
-	private OrthographicCamera camera;
 	Texture coralImg, lCoralImg, rCoralImg, vrCoralImg, vlCoralImg;
 	Texture rSeahorseImg, lSeahorseImg;
 	Texture clickImg;
+	BitmapFont score, start, end, reset;
+	private OrthographicCamera camera;
 	Player seahorse;
 	ArrayList<Sprite> sprites;
 	int m = 30;		//number of "levels" of coral
-	BitmapFont score, start, end, reset;
 	String level;
 	int number;
 	private boolean gameOver = false;
-	//Map gameMap = new Map();
 
 	@Override
 	public void create () {
