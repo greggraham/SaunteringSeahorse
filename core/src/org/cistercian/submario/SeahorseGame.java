@@ -23,7 +23,7 @@ public class SeahorseGame extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	Player seahorse;
 	ArrayList<Sprite> sprites;
-	int m = 30;		//number of "levels" of coral
+	int m = 300;		//number of "levels" of coral
 	String level;
 	int number;
 	private boolean gameOver = false;
@@ -73,13 +73,20 @@ public class SeahorseGame extends ApplicationAdapter {
 						}
 						break;
 					case Input.Keys.SPACE:
-						if (gameOver) {
+						if (gameOver || (seahorse.getRectX() == 40 && seahorse.getRectY() == 40)) {
 							seahorse.restart();
 							sprites = createMap();
 							camera.setToOrtho(false, 800, 600);
 							gameOver = false;
+							break;
 						}
-						break;
+						else if (seahorse.getDeltaX() != 0) {
+							seahorse.stopMotion();
+							break;
+						}
+						else {
+							seahorse.resumeMotion();
+						}
 				}
 				return true;
 			}
@@ -136,7 +143,7 @@ public class SeahorseGame extends ApplicationAdapter {
 		}
 		seahorse.draw(batch);
 
-		if(seahorse.getDeltaX() == 0 && !gameOver){
+		if(seahorse.getRectX() == 40 && seahorse.getRectY() == 40){
 			start.draw(batch, "use left and right\narrow keys to move", 170, 104);
 			batch.draw(clickImg, 110, 73);
 			//batch.draw(titleImg, 150, 375);

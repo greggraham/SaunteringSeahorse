@@ -17,6 +17,8 @@ public class Player extends Sprite {
     private float vertSpeed = 0;
     private Texture rSeahorseImage, lSeahorseImage;
     private int direction = 1;
+    private float saveDeltaX;
+    private float saveVertSpeed;
 
     public Player(Texture rSeahorseImage, Texture lSeahorseImage) {
         super(rSeahorseImage);
@@ -63,8 +65,15 @@ public class Player extends Sprite {
     }
 
     public void stopMotion() {
+        saveDeltaX = deltaX;
+        saveVertSpeed = vertSpeed;
         deltaX = 0;
         vertSpeed = 0;
+    }
+
+    public void resumeMotion() {
+        deltaX = saveDeltaX;
+        vertSpeed = saveVertSpeed;
     }
 
     public void restart() {
@@ -76,4 +85,6 @@ public class Player extends Sprite {
     public float getDeltaX(){
         return deltaX;
     }
+    public float getRectX() {return rect.x;}
+    public float getRectY() {return rect.y;}
 }
