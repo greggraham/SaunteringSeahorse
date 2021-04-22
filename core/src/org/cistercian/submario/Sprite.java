@@ -13,6 +13,8 @@ public class Sprite {
         texture = spriteImage;
         rect.width = texture.getWidth();
         rect.height = texture.getHeight();
+        rect.x = 40;
+        rect.y = 388;
     }
 
     public Sprite(Texture spriteImage, float centerX, float centerY) {

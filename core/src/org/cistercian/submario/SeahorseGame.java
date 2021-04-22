@@ -23,6 +23,7 @@ public class SeahorseGame extends ApplicationAdapter {
 	Player seahorse;
 	ArrayList<Sprite> sprites;
 	int m = 300;		//number of "levels" of coral
+	int begin = -1;
 	String level;
 	int number;
 	private boolean gameOver = false;
@@ -72,9 +73,9 @@ public class SeahorseGame extends ApplicationAdapter {
 						}
 						break;
 					case Input.Keys.SPACE:
-						if (gameOver || (seahorse.getRectX() == 40 && seahorse.getRectY() == 40)) {
-							seahorse.restart();
+						if (gameOver || (seahorse.getRectX() == 387.5  && seahorse.getRectY() == 40)) {
 							sprites = createMap();
+							seahorse.restart(begin);
 							camera.setToOrtho(false, 800, 600);
 							gameOver = false;
 							break;
@@ -91,14 +92,20 @@ public class SeahorseGame extends ApplicationAdapter {
 			}
 		});
 		sprites = createMap();
+		seahorse.restart(begin);
 	}
 	private ArrayList<Sprite> createMap() {
 
 		ArrayList<Sprite> sprites = new ArrayList<Sprite>();
 
 		//create horizontal coral sprites
+		begin = -1;
 		for(float y = 12.5f; y <= 12.5 + m * 150; y += 150){
-			float gap = (int)((Math.random() * 27) + 1) * 25 + 12.5f;
+			int gapIndex = (int)((Math.random() * 27) + 1);
+			float gap = gapIndex * 25 + 12.5f;
+			if(gap + 37.5 > 400 && y == 162.5f){
+				begin = 1;
+			}
 			for(float x = 37.5f; x <= 12.5 + 25 * 30; x += 25){
 				if (y < 25 || (x != gap && x != gap + 25 && x != gap + 50 && x != gap + 75)){
 					sprites.add(new Sprite(coralImg,x,y));
@@ -142,7 +149,7 @@ public class SeahorseGame extends ApplicationAdapter {
 		}
 		seahorse.draw(batch);
 
-		if(seahorse.getRectX() == 40 && seahorse.getRectY() == 40){
+		if(seahorse.getRectX() == 387.5 && seahorse.getRectY() == 40){
 			start.draw(batch, "use left and right\narrow keys to move", 170, 104);
 			batch.draw(clickImg, 110, 73);
 			//batch.draw(titleImg, 150, 375);

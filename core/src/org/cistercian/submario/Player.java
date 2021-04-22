@@ -24,8 +24,6 @@ public class Player extends Sprite {
         super(rSeahorseImage);
         this.rSeahorseImage = rSeahorseImage;
         this.lSeahorseImage = lSeahorseImage;
-        rect.x = 40;
-        rect.y = 40;
         stopMotion();
     }
 
@@ -76,10 +74,10 @@ public class Player extends Sprite {
         vertSpeed = saveVertSpeed;
     }
 
-    public void restart() {
-        rect.x = 40;
+    public void restart(int dir) {
+        rect.x = 387.5f;
         rect.y = 40;
-        direction = 1;
+        direction = dir;
     }
 
     public float getDeltaX(){

@@ -1,7 +1,7 @@
 org/cistercian/submario/Sprite.java
  org.cistercian.submario.Sprite
-org/cistercian/submario/Player.java
- org.cistercian.submario.Player
 org/cistercian/submario/SeahorseGame.java
  org.cistercian.submario.SeahorseGame
  org.cistercian.submario.SeahorseGame$1
+org/cistercian/submario/Player.java
+ org.cistercian.submario.Player
